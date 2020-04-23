@@ -1,4 +1,6 @@
 # pydnp3
+Updated version of pydnp3 that is built on latest master of opendnp3 and pybind11.  
+
 Python bindings for the [opendnp3](https://github.com/automatak/dnp3) library,  an open source
 implementation of the [DNP3](http://ww.dnp.org) protocol stack written in C++14.
 
