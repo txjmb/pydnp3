@@ -47,21 +47,41 @@ void bind_ChannelRetry(py::module &m)
     py::class_<asiopal::ChannelRetry>(m, "ChannelRetry",
         "Class used to configure how channel failures are retried")
         .def(
+            py::init<openpal::TimeDuration, openpal::TimeDuration, openpal::TimeDuration, asiopal::IOpenDelayStrategy&>(),
+            "   Construct a channel retry config class. \n"
+            ":param minOpenRetry: minimum connection retry interval on failure \n"
+            ":param maxOpenRetry: maximum connection retry interval on failure \n"
+            ":param reconnectDelay: delay before trying reconnect\n"
+            ":param strategy: strategy to use",
+            py::arg("minOpenRetry"), 
+            py::arg("maxOpenRetry"),
+            py::arg("reconnectDelay"),
+            py::arg("strategy")
+        )
+        .def(
             py::init<openpal::TimeDuration, openpal::TimeDuration>(),
             "   Construct a channel retry config class. \n"
             ":param minOpenRetry: minimum connection retry interval on failure \n"
-            ":param maxOpenRetry: maximum connection retry interval on failure \n"
-            ":param strategy: strategy to use",
+            ":param maxOpenRetry: maximum connection retry interval on failure \n",
             py::arg("minOpenRetry"), py::arg("maxOpenRetry")
         )
+        // .def(
+        //     py::init<openpal::TimeDuration, openpal::TimeDuration, asiopal::IOpenDelayStrategy&>(),
+        //     "   Construct a channel retry config class. \n"
+        //     ":param minOpenRetry: minimum connection retry interval on failure \n"
+        //     ":param maxOpenRetry: maximum connection retry interval on failure \n"
+        //     ":param strategy: strategy to use",
+        //     py::arg("minOpenRetry"), py::arg("maxOpenRetry"),
+        //     py::arg("strategy")
+        // )
         .def(
-            py::init<openpal::TimeDuration, openpal::TimeDuration, asiopal::IOpenDelayStrategy&>(),
+            py::init<openpal::TimeDuration, openpal::TimeDuration, openpal::TimeDuration>(),
             "   Construct a channel retry config class. \n"
             ":param minOpenRetry: minimum connection retry interval on failure \n"
             ":param maxOpenRetry: maximum connection retry interval on failure \n"
-            ":param strategy: strategy to use",
+            ":param reconnectDelay: delay before trying reconnect",
             py::arg("minOpenRetry"), py::arg("maxOpenRetry"),
-            py::arg("strategy")
+            py::arg("reconnectDelay")
         )
 
         .def(
@@ -87,6 +107,12 @@ void bind_ChannelRetry(py::module &m)
             "maxOpenRetry",
             &asiopal::ChannelRetry::maxOpenRetry,
             "Maximum connection retry interval on failure."
+        )
+
+        .def_readwrite(
+            "reconnectDelay",
+            &asiopal::ChannelRetry::reconnectDelay,
+            "Delay before trying reconnect."
         )
 
         .def(

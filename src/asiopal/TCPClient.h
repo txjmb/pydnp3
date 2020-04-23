@@ -47,8 +47,8 @@ void bind_TCPClient(py::module &m)
     py::class_<asiopal::TCPClient, std::shared_ptr<asiopal::TCPClient>>(m, "TCPClient")
 
         .def(
-            py::init<openpal::Logger&, std::shared_ptr<asiopal::Executor>&, asiopal::IPEndpoint&, std::string&>(),
-            py::arg("logger"), py::arg("executor"), py::arg("remote"), py::arg("adapter")
+            py::init<openpal::Logger&, std::shared_ptr<asiopal::Executor>&, std::string&>(),
+            py::arg("logger"), py::arg("executor"), py::arg("adapter")
         )
 
         .def_static(

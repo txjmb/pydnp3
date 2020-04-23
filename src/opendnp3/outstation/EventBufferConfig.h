@@ -123,12 +123,12 @@ void bind_EventBufferConfig(py::module &m)
             ":type maxAnalogOutputStatusEvents: unsigned short"
         )
 
-        .def_readwrite(
-            "maxSecurityStatisticEvents",
-            &opendnp3::EventBufferConfig::maxSecurityStatisticEvents,
-            "   The number of security statistic events the outstation will buffer before overflowing. \n"
-            ":type maxSecurityStatisticEvents: unsigned short"
-        )
+        // .def_readwrite(
+        //     "maxSecurityStatisticEvents",
+        //     &opendnp3::EventBufferConfig::maxSecurityStatisticEvents,
+        //     "   The number of security statistic events the outstation will buffer before overflowing. \n"
+        //     ":type maxSecurityStatisticEvents: unsigned short"
+        // )
 
         .def_static(
             "AllTypes",
@@ -139,12 +139,12 @@ void bind_EventBufferConfig(py::module &m)
             py::arg("sizes")
         )
 
-        .def(
-            "GetMaxEventsForType",
-            &opendnp3::EventBufferConfig::GetMaxEventsForType,
-            "Retrieve the number of events using a type enumeration.",
-            py::arg("type")
-        )
+        // .def(
+        //     "GetMaxEventsForType",
+        //     &opendnp3::EventBufferConfig::GetMaxEventsForType,
+        //     "Retrieve the number of events using a type enumeration.",
+        //     py::arg("type")
+        // )
 
         .def(
             "TotalEvents",

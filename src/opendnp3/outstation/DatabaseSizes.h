@@ -52,7 +52,7 @@ void bind_DatabaseSizes(py::module &m)
             "Default constructor: set all arguments to 0."
         )
 
-        .def(py::init<uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t>(),
+        .def(py::init<uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t>(),
              ":type numBinary: unsigned short \n"
              ":type numDoubleBinary: unsigned short \n"
              ":type numAnalog: unsigned short \n"
@@ -60,10 +60,11 @@ void bind_DatabaseSizes(py::module &m)
              ":type numFrozenCounter: unsigned short \n"
              ":type numBinaryOutputStatus: unsigned short \n"
              ":type numAnalogOutputStatus: unsigned short \n"
-             ":type numTimeAndInterval: unsigned short",
+             ":type numTimeAndInterval: unsigned short\n"
+             ":type numOctetString: unsigned short",
              py::arg("numBinary"), py::arg("numDoubleBinary"), py::arg("numAnalog"), py::arg("numCounter"),
              py::arg("numFrozenCounter"), py::arg("numBinaryOutputStatus"), py::arg("numAnalogOutputStatus"),
-             py::arg("numTimeAndInterval"))
+             py::arg("numTimeAndInterval"), py::arg("numOctetString"))
 
         .def_readwrite(
             "numBinary",
@@ -111,6 +112,12 @@ void bind_DatabaseSizes(py::module &m)
             "numTimeAndInterval",
             &opendnp3::DatabaseSizes::numTimeAndInterval,
             ":type numTimeAndInterval: unsigned short"
+        )
+
+        .def_readwrite(
+            "numTimeAndInterval",
+            &opendnp3::DatabaseSizes::numOctetString,
+            ":type numOctetString: unsigned short"
         )
 
         .def_static(
@@ -165,6 +172,13 @@ void bind_DatabaseSizes(py::module &m)
         .def_static(
             "TimeAndIntervalOnly",
             &opendnp3::DatabaseSizes::TimeAndIntervalOnly,
+            ":type count: unsigned short",
+            py::arg("count")
+        )
+
+        .def_static(
+            "OctetStringOnly",
+            &opendnp3::DatabaseSizes::OctetStringOnly,
             ":type count: unsigned short",
             py::arg("count")
         )
